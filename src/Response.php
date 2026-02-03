@@ -22,6 +22,7 @@ class Response
         echo $this->body;
         // TODO: Add response code and headers.
         if ($this->header) {
+            header($this->header);
         }
     }
 }
