@@ -28,7 +28,7 @@ class Router
 
     public function addRoute(string $method, string $path, string $return): void
     {
-        $this->routes[] = new Route($method, $path, $return);
+        $this->routes[] = new Route($method, $path, $return); //Pushes to the $routes array.
     }
 
 }
