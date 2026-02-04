@@ -21,7 +21,7 @@ class Router
         }
         if ($matchedRoute === null) {
             // Route not found error 404.
-            $response = new Response("Page not found", 404);
+            return new Response("Page not found", 404);
         }
         return new Response($matchedRoute->return);
     }
