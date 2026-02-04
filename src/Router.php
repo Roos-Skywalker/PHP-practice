@@ -26,7 +26,7 @@ class Router
         return new Response($matchedRoute->return);
     }
 
-    public function addRoute($method, $path, $return): void
+    public function addRoute(string $method, string $path, string $return): void
     {
         $this->routes[] = new Route($method, $path, $return);
     }
