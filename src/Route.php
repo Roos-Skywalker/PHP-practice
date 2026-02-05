@@ -6,13 +6,17 @@ class Route
 {
     private string $method;
     private string $path;
-    public string $return;
 
-    public function __construct(string $method, string $path, string $return)
+    /**
+     * @var callable
+     */
+    public $callback;
+
+    public function __construct(string $method, string $path, callable $callback)
     {
         $this->method = $method;
         $this->path = $path;
-        $this->return = $return;
+        $this->callback = $callback;
     }
 
     public function matches($method, $path): bool
