@@ -10,10 +10,11 @@ class Kernel
         $this->router = new Router();
     }
 
-    public function getRouter(): Router
+    public function registerRoutes(RouteProviderInterface $routeProvider): void
     {
-        return $this->router;
+        $routeProvider->register($this->router);
     }
+
     public function handle(Request $request): Response
     {
 //        $queryParameterString = implode(',', $request->queryParameters); //Turns a string array into a single string with , to separate.

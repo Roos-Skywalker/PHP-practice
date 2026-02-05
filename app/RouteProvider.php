@@ -2,7 +2,19 @@
 
 namespace App;
 
-class RouteProvider
-{
+use Framework\RouteProviderInterface;
+use Framework\Router;
 
+class RouteProvider implements RouteProviderInterface
+{
+    public function register(Router $router): void
+    {
+        $homeController = new HomeController();
+        $router->addRoute("GET", "/", [$homeController, "index"]);
+        $router->addRoute("GET", "/about", [$homeController, "about"]);
+
+        $taskController = new TaskController();
+        $router->addRoute("GET", "/", [$taskController, "index"]);
+        $router->addRoute("GET", "/about", [$taskController, "create"]);
+    }
 }
