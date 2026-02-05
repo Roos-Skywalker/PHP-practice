@@ -19,7 +19,7 @@ class Route
         $this->callback = $callback;
     }
 
-    public function matches($method, $path): bool
+    public function matches(string $method, string $path): bool
     {
         return $this->method === $method && $this->path === $path;
     }

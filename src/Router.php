@@ -32,5 +32,4 @@ class Router
     {
         $this->routes[] = new Route($method, $path, $callback); //Pushes to the $routes array.
     }
-
 }
