@@ -4,6 +4,8 @@ namespace App;
 
 use Framework\RouteProviderInterface;
 use Framework\Router;
+use App\Controllers\HomeController;
+use App\Controllers\TaskController;
 
 class RouteProvider implements RouteProviderInterface
 {
