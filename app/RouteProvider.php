@@ -16,7 +16,7 @@ class RouteProvider implements RouteProviderInterface
         $router->addRoute("GET", "/about", [$homeController, "about"]);
 
         $taskController = new TaskController();
-        $router->addRoute("GET", "/", [$taskController, "index"]);
-        $router->addRoute("GET", "/about", [$taskController, "create"]);
+        $router->addRoute("GET", "/task", [$taskController, "index"]);
+        $router->addRoute("GET", "/task/create", [$taskController, "create"]);
     }
 }
