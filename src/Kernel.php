@@ -7,7 +7,7 @@ use App\ServiceProvider;
 class Kernel
 {
     private Router $router;
-    private serviceContainer $container;
+    private ServiceContainer $container;
     public function __construct()
     {
         $this->router = new Router();
@@ -16,7 +16,7 @@ class Kernel
 
     public function registerRoutes(RouteProviderInterface $routeProvider): void
     {
-        $routeProvider->register($this->router);
+        $routeProvider->register($this->router, $this->container);
     }
 
     public function registerServices(ServiceProviderInterface $serviceProvider): void
@@ -26,9 +26,6 @@ class Kernel
 
     public function handle(Request $request): Response
     {
-//        $queryParameterString = implode(',', $request->queryParameters); //Turns a string array into a single string with , to separate.
-//        $response = new Response(body: "$queryParameterString, $request->path"); //Double quotes let you place variables.
         return $this->router->dispatch($request);
-//        return $response;
     }
 }
