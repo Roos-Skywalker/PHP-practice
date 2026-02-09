@@ -1,6 +1,7 @@
 <?php
 
 namespace Framework;
+use Exception;
 
 class ServiceContainer
 {
@@ -14,9 +15,13 @@ class ServiceContainer
      * @param class-string<T> $id
      * @param T $instance
      * @return void
+     * @throws Exception
      */
     public function set(string $id, object $instance): void
     {
+        if (isset($this->instance[$id])) {
+            throw new Exception("Service container already exists: $id");
+        }
         $this->instance[$id] = $instance;
     }
 
@@ -24,9 +29,13 @@ class ServiceContainer
      * @template T of object
      * @param class-string $id
      * @return T
+     * @throws Exception
      */
     public function get(string $id): object
     {
+        if (!isset($this->instance[$id])) {
+            throw new Exception("Service container does not exist: $id");
+        }
         return $this->instance[$id];
     }
 }
