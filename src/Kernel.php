@@ -2,17 +2,26 @@
 
 namespace Framework;
 
+use App\ServiceProvider;
+
 class Kernel
 {
     private Router $router;
+    private serviceContainer $container;
     public function __construct()
     {
         $this->router = new Router();
+        $this->container = new ServiceContainer();
     }
 
     public function registerRoutes(RouteProviderInterface $routeProvider): void
     {
         $routeProvider->register($this->router);
+    }
+
+    public function registerServices(ServiceProviderInterface $serviceProvider): void
+    {
+        $serviceProvider->register($this->container);
     }
 
     public function handle(Request $request): Response
