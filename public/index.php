@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+require_once '/path/to/vendor/autoload.php';
 
 use App\RouteProvider;
 use App\ServiceProvider;
