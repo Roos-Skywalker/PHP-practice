@@ -2,6 +2,10 @@
 
 namespace Framework;
 
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+
 class ResponseFactory
 {
     private \Twig\Environment $twig;
@@ -18,10 +22,17 @@ class ResponseFactory
         return $response;
     }
 
-    public function view(string $template, $parameters): Response
+    /**
+     * @param string $template
+     * @param array<string> $parameters
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function view(string $template, array $parameters): Response
     {
-        $response = new Response($this->twig->render($template, $parameters), 200);
-        return $response;
+        return new Response($this->twig->render($template, $parameters), 200);
     }
 
     public function notFound(): Response
