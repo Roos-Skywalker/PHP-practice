@@ -22,4 +22,9 @@ class TaskController
     {
         return $this->responseFactory->body('Create a new task');
     }
+
+    public function show($id): Response
+    {
+        return $this->responseFactory->view('Show a task');
+    }
 }

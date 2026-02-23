@@ -7,6 +7,8 @@ class Route
     private string $method;
     private string $path;
 
+    public string $routeParameters;
+
     /**
      * @var callable
      */
@@ -21,6 +23,11 @@ class Route
 
     public function matches(string $method, string $path): bool
     {
-        return $this->method === $method && $this->path === $path;
-    }
+//        return $this->method === $method && $this->path === $path;
+        $pattern = ';^$'; . $this->path .'/?$';';
+        if (preg_match($pattern, $path $matches)) {
+            $this->routeParameters = $matches;
+            return true;
+        }
+        return false;
 }

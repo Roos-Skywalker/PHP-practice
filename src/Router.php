@@ -8,6 +8,9 @@ class Router
     public array $routes;
     private ResponseFactory $responseFactory;
 
+    /** @var array<Route> */
+    public array $routeParameters;
+
     public function __construct(ResponseFactory $responseFactory)
     {
         $this->responseFactory = $responseFactory;
@@ -19,6 +22,8 @@ class Router
         foreach ($this->routes as $route) {
             if ($route->matches($request->method, $request->path)) {
                 $matchedRoute = $route;
+                $request =
+                $response = $callback($request);
                 break;
             }
         }
