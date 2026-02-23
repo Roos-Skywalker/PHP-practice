@@ -27,4 +27,9 @@ class Request
         $this->queryParameters = $queryParameters;
         $this->postParameters = $postParameters;
     }
+
+    public function get(string $key): ?string
+    {
+        return $this->queryParameters[$key] ?? null;
+    }
 }
