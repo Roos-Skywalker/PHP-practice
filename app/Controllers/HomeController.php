@@ -15,13 +15,12 @@ class HomeController
     }
     public function index(): Response
     {
-        $response = $this->responseFactory->body("Home page");
+        $response = $this->responseFactory->view('index.html.twig');
         return $response;
-//        return new Response('Welcome to my home page');
     }
 
     public function about(): Response
     {
-        return $this->responseFactory->body('Taskey is awesome!');
+        return $this->responseFactory->view('about.html.twig');
     }
 }
