@@ -20,9 +20,9 @@ class Response
     public function echo(): void
     {
         echo $this->body;
-        // TODO: Add response code and headers.
         if ($this->header) {
             header($this->header);
         }
+        http_response_code($this->responseCode);
     }
 }

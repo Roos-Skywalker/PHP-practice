@@ -33,7 +33,6 @@ class ResponseFactory
 
     public function notFound(): Response
     {
-        $response = new Response("Not Found", 404);
-        return $response;
+        return new Response($this->twig->render('404.html.twig'),404);
     }
 }
