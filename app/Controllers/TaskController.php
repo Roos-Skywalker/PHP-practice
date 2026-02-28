@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Repositories\TaskRepository;
+use App\Models\Task;
 use Framework\Response;
 use Framework\ResponseFactory;
 
@@ -9,22 +11,31 @@ class TaskController
 {
     private ResponseFactory $responseFactory;
 
-    public function __construct(ResponseFactory $responseFactory)
+    private TaskRepository $taskRepository;
+
+    public function __construct(ResponseFactory $responseFactory, TaskRepository $taskRepository)
     {
         $this->responseFactory = $responseFactory;
+        $this->taskRepository = $taskRepository;
     }
     public function index(): Response
     {
-        return $this->responseFactory->body('Welcome to my homepage!');
+        $tasks = $this->taskRepository->all();
+        return $this->responseFactory->view('index.html.twig', ['tasks' => $tasks]);
     }
 
     public function create(): Response
     {
-        return $this->responseFactory->body('Create a new task');
+        return $this->responseFactory->view('./Tasks/create.html.twig');
     }
 
-    public function show($id): Response
+    public function show(Request $request): Response
     {
-        return $this->responseFactory->view('Show a task');
+        $taskId = (int)$request->get('id');
+        $task = $this->taskRepository->find($taskId);
+        if ($task === null) {
+            return $this->responseFactory->notFound();
+        }
+        return $this->responseFactory->view('./Tasks/show.html.twig');
     }
 }

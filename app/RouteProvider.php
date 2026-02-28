@@ -7,6 +7,7 @@ use Framework\Router;
 use Framework\ServiceContainer;
 use App\Controllers\HomeController;
 use App\Controllers\TaskController;
+use Exception;
 
 class RouteProvider implements RouteProviderInterface
 {

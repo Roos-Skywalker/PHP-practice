@@ -22,3 +22,5 @@ if (!is_string($urlPath)) {
 $request = new Request($_SERVER['REQUEST_METHOD'], $urlPath, $_GET, $_POST);
 $response = $kernel->handle($request);
 $response->echo();
+
+$config

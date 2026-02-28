@@ -1,5 +1,17 @@
 {% extends 'Partials/base.html.twig' %}
 
+{% set statuses =
+    {
+    0: 'new',
+    1: 'deferred',
+    2: 'in progress',
+    3: 'cancelled',
+    4: 'completed'
+    }
+%}
+
 {% block content %}
     <p>Show page here</p>
+    <p>Task ID {{ task.id }}</p>
+    <p>Created at {{ task.created_at('d F Y') }}</p>
 {% endblock %}

@@ -1,0 +1,1 @@
+INSERT INTO tasks (title, description, priority, status, progress, created_at, completed_at) VALUES ();
