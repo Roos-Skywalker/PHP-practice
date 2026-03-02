@@ -32,4 +32,14 @@ class Request
     {
         return $this->queryParameters[$key] ?? null;
     }
+
+    public function getPost(string $key): ?string {
+        if (array_key_exists($key, $this->routeParameters)) {
+            return $this->routeParameters[$key];
+        }
+        if (array_key_exists($key, $this->postParameters)) {
+            return $this->postParameters[$key];
+        }
+        return null;
+    }
 }
