@@ -35,4 +35,17 @@ class ResponseFactory
     {
         return new Response($this->twig->render('404.html.twig'),404);
     }
+
+    public function redirect(string $url): Response {
+        $response = new Response();
+        $response->responseCode = 302;
+        $response->header = "Location:" . $url;
+        return $response;
+    }
+
+    public function internalError(string $message): Response {
+        $response = new Response();
+        $response->responseCode = 500;
+        return $response;
+    }
 }
