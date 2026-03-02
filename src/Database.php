@@ -29,4 +29,8 @@ class Database
     public function migrate(string $migrationDirectory): void {
         $files = scandir($migrationDirectory);
     }
+
+    public function getLastID(): int {
+        return $this->connection->lastInsertId();
+    }
 }
