@@ -108,5 +108,28 @@ class TaskRepository implements TaskRepositoryInterface
         if (!$row) {
             return null;
         }
+        return $this->fromDbRow($task);
+    }
+
+    public function insert(Task $task): ?Task {
+        $statement = $this->database->run(
+            'INSERT INTO tasks (name, title, description, priority, status, progress, created_at, completed_at),
+            VALUES (:name, :title, :description, :priority, :status, :progress, :createdAt, :completed_at)'
+        ),
+        [
+            'title' => $task->title,
+            'description' => $task->description,
+            'priority' => $task->priority,
+            'status' => $task->status,
+            'progress' => $task->progress,
+            'createdAt' => $task->createdAt,
+            'completed_at' => $task->completedAt
+        ]
+    );
+    if ($statement->rowCount() === 0) {
+        return null;
+    }
+    $task_id = $this->database->getLastId();
+    return $task;
     }
 }
