@@ -17,16 +17,17 @@ class TaskController
 
     public function index(): Response
     {
-        return $this->responseFactory->body('Welcome to my homepage!');
+        return $this->responseFactory->view("tasks/index.html.twig");
     }
 
     public function create(): Response
     {
-        return $this->responseFactory->body('Create a new task');
+        return $this->responseFactory->view("tasks/create.html.twig");
     }
 
-    public function show($id): Response
+    public function show(Request $request): Response
     {
-        return $this->responseFactory->view('Show a task');
+        $taskId = $request->get('id');
+        return $this->responseFactory->view("tasks/show.html.twig", ["id" => $taskId]);
     }
 }
