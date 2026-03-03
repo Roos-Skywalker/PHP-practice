@@ -7,12 +7,21 @@ use App\ServiceProvider;
 class Kernel
 {
     private Router $router;
+
     private ServiceContainer $container;
-    public function __construct()
+
+    private ConfigManager $configManager;
+
+    /**
+     * @param string[] $config
+     * @throws \Exception
+     */
+    public function __construct(array $config)
     {
         $this->container = new ServiceContainer();
         $responseFactory = new ResponseFactory();
         $this->container->set(ResponseFactory::class, $responseFactory);
+
         $this->router = new Router($responseFactory);
     }
 
@@ -26,6 +35,12 @@ class Kernel
         $serviceProvider->register($this->container);
     }
 
+    /**
+     * Handle the incoming Request and produce a Response.
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function handle(Request $request): Response
     {
         return $this->router->dispatch($request);
