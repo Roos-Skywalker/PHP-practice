@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Framework\Request;
 use Framework\Response;
 use Framework\ResponseFactory;
 
@@ -13,6 +14,7 @@ class TaskController
     {
         $this->responseFactory = $responseFactory;
     }
+
     public function index(): Response
     {
         return $this->responseFactory->body('Welcome to my homepage!');
