@@ -13,13 +13,14 @@ class TaskController
     {
         $this->responseFactory = $responseFactory;
     }
+
     public function index(): Response
     {
-        return $this->responseFactory->body('Welcome to my homepage!');
+        return $this->responseFactory->view("tasks/index.html.twig");
     }
 
     public function create(): Response
     {
-        return $this->responseFactory->body('Create a new task');
+        return $this->responseFactory->view("tasks/create.html.twig");
     }
 }
