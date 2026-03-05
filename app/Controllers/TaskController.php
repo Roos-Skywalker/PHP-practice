@@ -37,7 +37,7 @@ class TaskController
         if ($task === null) {
             return $this->responseFactory->notFound();
         }
-        return $this->responseFactory->view('./Tasks/show.html.twig');
+        return $this->responseFactory->view('./Tasks/show.html.twig', ['task' => $task]);
     }
 
     public function store(Request $request): Response {
