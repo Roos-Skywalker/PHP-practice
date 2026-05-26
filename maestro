@@ -1,5 +1,9 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
+use Framework\Database;
+
 if ($argv[1] === 'serve') {
     exec('php -S 0.0.0.0:8888 -t public');
 }
@@ -8,6 +12,12 @@ if ($argv[1] === 'check') {
     passthru('php vendor/bin/phpstan --ansi');
     passthru('php vendor/bin/phpcs --colors');
     passthru('php vendor/bin/deptrac --ansi');
+}
+
+if ($argv[1] === 'migrate') {
+    $database = new Database(__DIR__ . '/database/app.sqlite');
+    $database->migrate(__DIR__ . '/database/');
+    echo "Migration complete.\n";
 }
 
 if ($argv[1] === 'phpstan') {
